@@ -36,3 +36,34 @@ def get_games_by_current_user():
         Game.user_id == current_user.id,
         ).all()
     return jsonify([game.to_dict() for game in games])
+
+# Edit Game
+@game_routes.route('/<int:id>', methods=["PUT"])
+@login_required
+def edit_game(id):
+    """
+    Edit the posting of a Game, should change only price and store
+    """
+    game = Game.query.get(id)
+    if game is None:
+        return jsonify({"error": "Game not found"}), 404
+    data = request.get_json()
+    game.price = data['price']
+    game.store = data['store']
+    game.updated_at = datetime.utcnow()
+    db.session.commit()
+    return game.to_dict()
+
+# Delete Game
+@game_routes.route('/<int:id>', methods=["DELETE"])
+@login_required
+def delete_game(id):
+    """
+    Delete Game Posting
+    """
+    game = Game.query.get(id)
+    if game is None:
+        return jsonify({'error': "Game not found"}), 404
+    db.session.delete(game)
+    db.session.commit()
+    return jsonify({"success": "Game posting was deleted"}), 200
