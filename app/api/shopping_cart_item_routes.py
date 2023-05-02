@@ -8,8 +8,10 @@ shopping_cart_item_routes = Blueprint('shopping_cart_item', __name__)
 
 ## Need to double check urls
 
+## Make sure to turn those that aren't needed off
+
 ##Get all Shopping Cart Items
-@shopping_cart_item_routes.route('/')
+@shopping_cart_item_routes.route('/cart')
 @login_required
 def get_all_shopping_cart_item():
     """
@@ -19,7 +21,7 @@ def get_all_shopping_cart_item():
     return jsonify({'Shopping Cart Items': [shopItems.to_dict() for shopItem in shopItems]})
 
 ##Get shopping cart item by Id
-@shopping_cart_item_routes.route('/<int:id>')
+@shopping_cart_item_routes.route('/cart/<int:id>')
 @login_required
 def shopping_cart_item_by_id(id):
     """
@@ -31,7 +33,7 @@ def shopping_cart_item_by_id(id):
     return shopItem.to_dict()
 
 #Get all Shopping Cart Items of Current User
-@game_routes.route('/current', methods=["GET"])
+@game_routes.route('/users/current/cart', methods=["GET"])
 @login_required
 def get_shopping_cart_item_by_current_user():
     shopItems = Shopping_Cart_Item.query.filter(
@@ -40,7 +42,7 @@ def get_shopping_cart_item_by_current_user():
     return jsonify([shopItem.to_dict() for shopItem in shopItems])
 
 # Edit Shopping Cart Items
-@shopping_cart_item_routes.route('/<int:id>', methods=["PUT"])
+@shopping_cart_item_routes.route('/users/current/cart/<int:id>', methods=["PUT"])
 @login_required
 def edit_shopping_cart_item(id):
     """
@@ -55,7 +57,7 @@ def edit_shopping_cart_item(id):
     return shopItem.to_dict()
 
 # Delete Shopping Cart Item
-@shopping_cart_item_routes.route('/<int:id>', methods=["DELETE"])
+@shopping_cart_item_routes.route('/users/current/cart/<int:id>', methods=["DELETE"])
 @login_required
 def delete_shopping_cart_item(id):
     """

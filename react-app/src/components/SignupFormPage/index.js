@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 import './SignupForm.css';
+import signupImage from "./signup-image.jpg"
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -28,23 +29,29 @@ function SignupFormPage() {
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+    <div className='signup-page-container'>
+      <img className="signup-image" src={signupImage} alt="Signup"/>
+    <div className='signup-container'>
+      <h1 className="signup-text-container">Sign Up Here!</h1>
+    <form className='signup-form-container' onSubmit={handleSubmit}>
+      <h3 className="signup-header-text">Create an account</h3>
+      <div className='signup-input'>
+        <ul className='signup-form-error'>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
         </ul>
-        <label>
-          Email
+        <label className='signup-input-name'>
+          <span>Email</span>
           <input
-            type="text"
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-          />
+            />
         </label>
-        <label>
-          Username
+        <label className='signup-input-name'>
+          <span>Username</span>
           <input
             type="text"
             value={username}
@@ -52,8 +59,8 @@ function SignupFormPage() {
             required
           />
         </label>
-        <label>
-          Password
+        <label className='signup-input-name'>
+          <span>Password</span>
           <input
             type="password"
             value={password}
@@ -61,8 +68,8 @@ function SignupFormPage() {
             required
           />
         </label>
-        <label>
-          Confirm Password
+        <label className='signup-input-name'>
+          <span>Confirm Password</span>
           <input
             type="password"
             value={confirmPassword}
@@ -70,9 +77,11 @@ function SignupFormPage() {
             required
           />
         </label>
-        <button type="submit">Sign Up</button>
+        </div>
+          <button className='submit-signup-button' type="submit">Sign Up</button>
       </form>
-    </>
+      </div>
+     </div>
   );
 }
 
