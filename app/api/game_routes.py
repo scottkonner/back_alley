@@ -67,3 +67,13 @@ def delete_game(id):
     db.session.delete(game)
     db.session.commit()
     return jsonify({"success": "Game posting was deleted"}), 200
+
+## Get Games from SearchBar
+@game_routes.route('/')
+@login_required
+def get_searched_games(query):
+    """
+    Query for all games based on search request and return them in a list
+    """
+    games = Game.query.filter(Game.name.ilike(f'%{query}%')).all
+    return jsonify({'games': [game.to_dict() for game in games]})
