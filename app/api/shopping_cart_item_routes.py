@@ -41,6 +41,29 @@ def get_shopping_cart_item_by_current_user():
         ).all()
     return jsonify([shopItem.to_dict() for shopItem in shopItems])
 
+#Create a new Shopping Cart Item
+
+@review_routes.route("/", methods = ["POST"])
+@login_required
+def createReview(game_id):
+    '''
+    Create a new review
+    '''
+    form = NewReview()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        review_post = Review(
+            user_id = current_user.id,
+            game_id = game_id
+            content = form.content.data,
+            created_at=datetime.utcnow()
+            updated_at=datetime.utcnow()
+        )
+        db.session.add(review_post)
+        db.session.commit()
+        return review_post.to_dict()
+    return jsonify({'error': 'This form was not validated'})
+
 # Edit Shopping Cart Items
 @shopping_cart_item_routes.route('/users/current/cart/<int:id>', methods=["PUT"])
 @login_required

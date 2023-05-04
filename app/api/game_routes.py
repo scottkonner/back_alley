@@ -37,6 +37,32 @@ def get_games_by_current_user():
         ).all()
     return jsonify([game.to_dict() for game in games])
 
+#Create a new Game posting
+
+# The info coming in from the cheap shark API needed for highlighted things
+@game_routes.route("/", methods = ["POST"])
+@login_required
+def createGame():
+    '''
+    Create a new game posting
+    '''
+    form = NewGame()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        game_post = Game(
+            user_id = current_user.id,
+            # API_id = current_user.id,
+            name = form.name.data,
+            # store = form.name.data,
+            # icon = form.name.data,
+            created_at=datetime.utcnow()
+            updated_at=datetime.utcnow()
+        )
+        db.session.add(game_post)
+        db.session.commit()
+        return game_post.to_dict()
+    return jsonify({'error': 'This form was not validated'})
+
 # Edit Game
 @game_routes.route('/<int:id>', methods=["PUT"])
 @login_required
@@ -69,7 +95,7 @@ def delete_game(id):
     return jsonify({"success": "Game posting was deleted"}), 200
 
 ## Get Games from SearchBar
-@game_routes.route('/')
+@game_routes.route('/search')
 @login_required
 def get_searched_games(query):
     """

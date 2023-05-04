@@ -9,7 +9,7 @@ review_routes = Blueprint('review', __name__)
 ## Need to double check urls
 
 ##Get all Review
-@review_routes.route('/')
+@review_routes.route('/reviews')
 @login_required
 def get_all_review():
     """
@@ -19,7 +19,7 @@ def get_all_review():
     return jsonify({'reviews': [review.to_dict() for review in reviews]})
 
 ##Get Review by Id
-@review_routes.route('/<int:id>')
+@review_routes.route('/reviews/<int:id>')
 @login_required
 def review_by_id(id):
     """
@@ -40,7 +40,7 @@ def get_reviews_by_current_user():
     return jsonify([review.to_dict() for review in reviews])
 
 #Get all Reviews of Game
-@game_routes.route('/current', methods=["GET"])
+@game_routes.route('/games/<int:id>/reviews', methods=["GET"])
 @login_required
 def get_review_by_game(id):
     reviews = Review.query.filter(
@@ -48,8 +48,31 @@ def get_review_by_game(id):
         ).all()
     return jsonify([review.to_dict() for review in reviews])
 
+#Create a new Review
+
+@review_routes.route("/games/<int:game_id>", methods = ["POST"])
+@login_required
+def createReview(game_id):
+    '''
+    Create a new review
+    '''
+    form = NewReview()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        review_post = Review(
+            user_id = current_user.id,
+            game_id = game_id
+            content = form.content.data,
+            created_at=datetime.utcnow()
+            updated_at=datetime.utcnow()
+        )
+        db.session.add(review_post)
+        db.session.commit()
+        return review_post.to_dict()
+    return jsonify({'error': 'This form was not validated'})
+
 # Edit Review
-@review_routes.route('/<int:id>', methods=["PUT"])
+@review_routes.route('/games/<int:game_id>/reviews/<int:id>', methods=["PUT"])
 @login_required
 def edit_review(id):
     """
@@ -65,7 +88,7 @@ def edit_review(id):
     return review.to_dict()
 
 # Delete Review
-@review_routes.route('/<int:id>', methods=["DELETE"])
+@review_routes.route('/games/<int:game_id>/reviews/<int:id>', methods=["DELETE"])
 @login_required
 def delete_review(id):
     """
