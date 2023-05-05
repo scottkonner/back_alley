@@ -31,7 +31,7 @@ def review_by_id(id):
     return review.to_dict()
 
 #Get all Reviews of Current User
-@review_routes.route('/current', methods=["GET"])
+@review_routes.route('/reviews/current', methods=["GET"])
 @login_required
 def get_reviews_by_current_user():
     reviews = Review.query.filter(

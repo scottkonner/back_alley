@@ -33,7 +33,7 @@ def shopping_cart_item_by_id(id):
     return shopItem.to_dict()
 
 #Get all Shopping Cart Items of Current User
-@game_routes.route('/users/current/cart', methods=["GET"])
+@shopping_cart_item_routes.route('/users/current/cart', methods=["GET"])
 @login_required
 def get_shopping_cart_item_by_current_user():
     shopItems = Shopping_Cart_Item.query.filter(
@@ -43,25 +43,23 @@ def get_shopping_cart_item_by_current_user():
 
 #Create a new Shopping Cart Item
 
-@review_routes.route("/", methods = ["POST"])
+@shopping_cart_item_routes.route("/games/<int:gameId>/", methods = ["POST"])
 @login_required
-def createReview(game_id):
+def createCartItem(game_id):
     '''
-    Create a new review
+    Add a new game posting to the shopping cart
     '''
-    form = NewReview()
+    form = NewCartItem()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        review_post = Review(
+        cartItem_post = CartItem(
             user_id = current_user.id,
-            game_id = game_id
-            content = form.content.data,
-            created_at=datetime.utcnow()
-            updated_at=datetime.utcnow()
+            game_id = game_id,
+            quantity = 1
         )
-        db.session.add(review_post)
+        db.session.add(cartItem_post)
         db.session.commit()
-        return review_post.to_dict()
+        return cartItem_post.to_dict()
     return jsonify({'error': 'This form was not validated'})
 
 # Edit Shopping Cart Items

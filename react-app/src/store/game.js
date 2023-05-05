@@ -1,5 +1,5 @@
 const LOAD_GAMES = "games/loadGames";
-const LOAD_USER_GAMES = 'games/userServers';
+const LOAD_USER_GAMES = 'games/userGames';
 const LOAD_GAME_BY_ID = 'games/loadGameById';
 const CREATE_GAME = "games/createGame";
 const EDIT_GAME = 'games/editGame';
@@ -18,7 +18,7 @@ const loadUserGames = (userGames) => ({
 
 const loadGameById = (game) => ({
     type: LOAD_GAME_BY_ID,
-    server
+    game
 });
 
 const createGame = (game) => ({
