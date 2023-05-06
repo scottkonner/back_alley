@@ -1,4 +1,4 @@
-from ..models import db, Message, environment, SCHEMA
+from ..models import db, Shopping_Cart_Item, environment, SCHEMA
 from datetime import datetime
 
 shopping_cart_items = [
@@ -30,8 +30,8 @@ shopping_cart_items = [
 ]
 
 
-def seed_games():
-    db.session.add_all([Shopping_cart_item(**shopping_cart_item) for shopping_cart_item in shopping_cart_items])
+def seed_shopping_cart_items():
+    db.session.add_all([Shopping_Cart_Item(**shopping_cart_item) for shopping_cart_item in shopping_cart_items])
     db.session.commit()
 
 
@@ -41,7 +41,7 @@ def seed_games():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-def undo_messages():
+def undo_shopping_cart_items():
     if environment == "production":
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.shopping_cart_items RESTART IDENTITY CASCADE;")

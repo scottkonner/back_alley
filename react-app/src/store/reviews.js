@@ -8,7 +8,7 @@ const DELETE_REVIEW = "reviews/deleteReview";
 
 const loadReviews = (reviews) => ({
     type: LOAD_REVIEWS,
-    games
+    reviews
 });
 
 const loadUserReviews = (userReviews) => ({

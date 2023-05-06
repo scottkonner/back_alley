@@ -2,7 +2,7 @@ import './ReviewCard.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteSpot } from '../../store/spot'
 
-const GameCard = ({ review }) => {
+const ReviewCard = ({ review }) => {
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
 

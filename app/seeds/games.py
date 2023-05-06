@@ -1,4 +1,4 @@
-from ..models import db, Message, environment, SCHEMA
+from ..models import db, Game, environment, SCHEMA
 from datetime import datetime
 
 games = [
@@ -16,8 +16,8 @@ games = [
         "user_id":1,
         "API_id":129,
         "name": "Red Orchestra 2: Heroes of Stalingrad",
-        "store": "Target",
-        "price": 5.50,
+        "store": "Epic Store",
+        "price": 9.99,
         "icon": "https://www.gamersgate.com/media/products/profile/89364/180_259.jpg/w90/",
         "created_at": datetime.utcnow(),
         "updated_at": datetime.utcnow()
@@ -26,8 +26,8 @@ games = [
         "user_id":2,
         "API_id":130,
         "name": "Renegade Ops",
-        "store": "Target",
-        "price": 5.50,
+        "store": "Steam",
+        "price": 2.27,
         "icon": "https://steamcdn-a.akamaihd.net/steam/apps/99300/capsule_sm_120.jpg?t=1522061011",
         "created_at": datetime.utcnow(),
         "updated_at": datetime.utcnow()
@@ -37,7 +37,7 @@ games = [
         "API_id":180,
         "name": "Just Cause 2",
         "store": "Target",
-        "price": 5.50,
+        "price": 4.45,
         "icon": "https://cdn.cloudflare.steamstatic.com/steam/apps/8190/capsule_sm_120.jpg?t=1593180404",
         "created_at": datetime.utcnow(),
         "updated_at": datetime.utcnow()
@@ -56,7 +56,7 @@ def seed_games():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-def undo_messages():
+def undo_games():
     if environment == "production":
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.games RESTART IDENTITY CASCADE;")

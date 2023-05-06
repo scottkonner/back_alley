@@ -14,8 +14,8 @@ class Shopping_Cart_Item(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
 
 
-    user = db.relationship('User', back_populates='wishlist_item')
-    game = db.relationship('Game', back_populates='wishlist_item')
+    user = db.relationship('User', back_populates='shopping_cart_item')
+    game = db.relationship('Game', back_populates='shopping_cart_item')
 
 
     def to_dict(self):

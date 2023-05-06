@@ -46,22 +46,23 @@ def createGame():
     '''
     Create a new game posting
     '''
-    form = NewGame()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        game_post = Game(
-            user_id = current_user.id,
-            # API_id = current_user.id,
-            name = form.name.data,
-            # store = form.name.data,
-            # icon = form.name.data,
-            created_at=datetime.utcnow()
-            updated_at=datetime.utcnow()
-        )
-        db.session.add(game_post)
-        db.session.commit()
-        return game_post.to_dict()
-    return jsonify({'error': 'This form was not validated'})
+    # form = NewGame()
+    # form['csrf_token'].data = request.cookies['csrf_token']
+    # if form.validate_on_submit():
+    game_post = Game(
+        user_id = current_user.id,
+        # API_id = current_user.id,
+        # name = data['name'],
+        name = data['price'],
+        store = data['store'],
+        # icon = form.name.data,
+        created_at=datetime.utcnow(),
+        updated_at=datetime.utcnow()
+    )
+    db.session.add(game_post)
+    db.session.commit()
+    return game_post.to_dict()
+    # return jsonify({'error': 'This form was not validated'})
 
 # Edit Game
 @game_routes.route('/<int:id>', methods=["PUT"])
@@ -97,9 +98,11 @@ def delete_game(id):
 ## Get Games from SearchBar
 @game_routes.route('/search')
 @login_required
-def get_searched_games(query):
+def get_searched_games():
     """
     Query for all games based on search request and return them in a list
     """
-    games = Game.query.filter(Game.name.ilike(f'%{query}%')).all
-    return jsonify({'games': [game.to_dict() for game in games]})
+    search = request.args.get('q').lower()
+    games = Game.query.all()
+
+    return jsonify({'games': [game.to_dict() for game in games if search in game.name.lower()]})

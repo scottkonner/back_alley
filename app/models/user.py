@@ -14,6 +14,11 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    game = db.relationship('Game', back_populates='user', cascade='all, delete-orphan')
+    review = db.relationship('Review', back_populates='user', cascade='all, delete-orphan')
+    shopping_cart_item = db.relationship('Shopping_Cart_Item', back_populates='user', cascade='all,delete-orphan')
+    wishlist_item = db.relationship('Wishlist_Item', back_populates='user', cascade='all, delete-orphan')
+
     @property
     def password(self):
         return self.hashed_password

@@ -1,4 +1,4 @@
-from ..models import db, Message, environment, SCHEMA
+from ..models import db, Review, environment, SCHEMA
 from datetime import datetime
 
 reviews = [
@@ -26,7 +26,7 @@ reviews = [
 ]
 
 
-def seed_games():
+def seed_reviews():
     db.session.add_all([Review(**review) for review in reviews])
     db.session.commit()
 
@@ -37,7 +37,7 @@ def seed_games():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-def undo_messages():
+def undo_reviews():
     if environment == "production":
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.reviews RESTART IDENTITY CASCADE;")

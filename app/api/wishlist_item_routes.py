@@ -40,23 +40,23 @@ def get_wishlist_items_by_current_user():
     return jsonify([wishItem.to_dict() for wishItem in wishItems])
 
 # Create Wishlist Item
-@wishlist_item_routes.route("/games/<int:gameId>/", methods = ["POST"])
+@wishlist_item_routes.route("/games/<int:gameId>/wishlist", methods = ["POST"])
 @login_required
-def createWishItem(game_id):
+def createWishItem(gameId):
     '''
     Add a new game posting to the wishlist
     '''
-    form = NewWishItem()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        wishItem_post = WishItem(
-            user_id = current_user.id,
-            game_id = game_id,
+    # form = NewWishItem()
+    # form['csrf_token'].data = request.cookies['csrf_token']
+    # if form.validate_on_submit():
+    wishItem_post = Wishlist_Item(
+        user_id = current_user.id,
+        game_id = gameId,
         )
-        db.session.add(wishItem_post)
-        db.session.commit()
-        return wishItem_post.to_dict()
-    return jsonify({'error': 'This form was not validated'})
+    db.session.add(wishItem_post)
+    db.session.commit()
+    return wishItem_post.to_dict()
+    # return jsonify({'error': 'This form was not validated'})
 
 # Edit Wishlist Item
 @wishlist_item_routes.route('/users/current/wishlist/<int:id>', methods=["PUT"])

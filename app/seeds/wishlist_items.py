@@ -1,4 +1,4 @@
-from ..models import db, Message, environment, SCHEMA
+from ..models import db, Wishlist_Item, environment, SCHEMA
 from datetime import datetime
 
 wishlist_items = [
@@ -21,7 +21,7 @@ wishlist_items = [
 ]
 
 
-def seed_games():
+def seed_wishlist_items():
     db.session.add_all([Wishlist_Item(**wishlist_item) for wishlist_item in wishlist_items])
     db.session.commit()
 
@@ -32,7 +32,7 @@ def seed_games():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-def undo_messages():
+def undo_wishlist_items():
     if environment == "production":
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.wishlist_items RESTART IDENTITY CASCADE;")

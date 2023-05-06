@@ -18,7 +18,7 @@ def get_all_shopping_cart_item():
     Query for all shopping cart items.  Should not be necessary.
     """
     shopItems = Shopping_Cart_Item.query.all()
-    return jsonify({'Shopping Cart Items': [shopItems.to_dict() for shopItem in shopItems]})
+    return jsonify({'Shopping Cart Items': [shopItem.to_dict() for shopItem in shopItems]})
 
 ##Get shopping cart item by Id
 @shopping_cart_item_routes.route('/cart/<int:id>')
@@ -43,24 +43,25 @@ def get_shopping_cart_item_by_current_user():
 
 #Create a new Shopping Cart Item
 
-@shopping_cart_item_routes.route("/games/<int:gameId>/", methods = ["POST"])
+@shopping_cart_item_routes.route("/games/<int:gameId>/cart", methods = ["POST"])
 @login_required
-def createCartItem(game_id):
+def createCartItem(gameId):
     '''
     Add a new game posting to the shopping cart
     '''
-    form = NewCartItem()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        cartItem_post = CartItem(
-            user_id = current_user.id,
-            game_id = game_id,
-            quantity = 1
+    # form = NewCartItem()
+    # form['csrf_token'].data = request.cookies['csrf_token']
+    # if form.validate_on_submit():
+    data = request.get_json()
+    cartItem_post = Shopping_Cart_Item(
+        user_id = current_user.id,
+        game_id = gameId,
+        quantity = 1
         )
-        db.session.add(cartItem_post)
-        db.session.commit()
-        return cartItem_post.to_dict()
-    return jsonify({'error': 'This form was not validated'})
+    db.session.add(cartItem_post)
+    db.session.commit()
+    return cartItem_post.to_dict()
+    # return jsonify({'error': 'This form was not validated'})
 
 # Edit Shopping Cart Items
 @shopping_cart_item_routes.route('/users/current/cart/<int:id>', methods=["PUT"])

@@ -1,9 +1,9 @@
-const LOAD_WISHLIST_ITEMS = "cartItems/loadWishlistItems";
-const LOAD_USER_WISHLIST_ITEMS = 'cartItems/userWishlistItems';
-const LOAD_WISHLIST_ITEM_BY_ID = 'cartItems/loadWishlistItemsById';
-const CREATE_WISHLIST_ITEM = "cartItems/createWishlistItem";
-const EDIT_WISHLIST_ITEM = 'cartItems/editWishlistItem';
-const DELETE_WISHLIST_ITEM = "cartItems/deleteWishlistItem";
+const LOAD_WISHLIST_ITEMS = "wishItems/loadWishlistItems";
+const LOAD_USER_WISHLIST_ITEMS = 'wishItems/userWishlistItems';
+const LOAD_WISHLIST_ITEM_BY_ID = 'wishItems/loadWishlistItemsById';
+const CREATE_WISHLIST_ITEM = "wishItems/createWishlistItem";
+const EDIT_WISHLIST_ITEM = 'wishItems/editWishlistItem';
+const DELETE_WISHLIST_ITEM = "wishItems/deleteWishlistItem";
 
 
 const loadWishItems = (wishItems) => ({
@@ -70,7 +70,7 @@ export const createAWishItem = (gameId, wishItem) => async (dispatch) => {
     });
     if (response.ok) {
         const wishItem = await response.json();
-        return dispatch(createCartItem(wishItem))
+        return dispatch(createWishItem(wishItem))
     }
     return response
 };

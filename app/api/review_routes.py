@@ -40,41 +40,42 @@ def get_reviews_by_current_user():
     return jsonify([review.to_dict() for review in reviews])
 
 #Get all Reviews of Game
-@game_routes.route('/games/<int:id>/reviews', methods=["GET"])
+@review_routes.route('/games/<int:id>/reviews', methods=["GET"])
 @login_required
 def get_review_by_game(id):
     reviews = Review.query.filter(
-        Review.game_id == Game.id,
+        Review.game_id == id ,
         ).all()
     return jsonify([review.to_dict() for review in reviews])
 
 #Create a new Review
 
-@review_routes.route("/games/<int:game_id>", methods = ["POST"])
+@review_routes.route("/games/<int:gameId>", methods = ["POST"])
 @login_required
-def createReview(game_id):
+def createReview(gameId):
     '''
     Create a new review
     '''
-    form = NewReview()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        review_post = Review(
+    # form = NewReview()
+    # form['csrf_token'].data = request.cookies['csrf_token']
+    # if form.validate_on_submit():
+    data = request.get_json()
+    review_post = Review(
             user_id = current_user.id,
-            game_id = game_id
-            content = form.content.data,
-            created_at=datetime.utcnow()
+            game_id = gameId,
+            content = data['content'],
+            created_at=datetime.utcnow(),
             updated_at=datetime.utcnow()
         )
-        db.session.add(review_post)
-        db.session.commit()
-        return review_post.to_dict()
-    return jsonify({'error': 'This form was not validated'})
+    db.session.add(review_post)
+    db.session.commit()
+    return review_post.to_dict()
+    # return jsonify({'error': 'This form was not validated'})
 
 # Edit Review
 @review_routes.route('/games/<int:game_id>/reviews/<int:id>', methods=["PUT"])
 @login_required
-def edit_review(id):
+def edit_review(game_id, id):
     """
     Edit the posting of a Review, should change content
     """
@@ -90,7 +91,7 @@ def edit_review(id):
 # Delete Review
 @review_routes.route('/games/<int:game_id>/reviews/<int:id>', methods=["DELETE"])
 @login_required
-def delete_review(id):
+def delete_review(game_id, id):
     """
     Delete Review Posting
     """
