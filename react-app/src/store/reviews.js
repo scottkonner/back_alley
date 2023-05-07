@@ -1,6 +1,7 @@
 const LOAD_REVIEWS = "reviews/loadReviews";
 const LOAD_USER_REVIEWS = 'reviews/userReviews';
 const LOAD_REVIEW_BY_ID = 'reviews/loadReviewById';
+const LOAD_REVIEWS_BY_GAME = 'reviews/loadReviewsByGame';
 const CREATE_REVIEW = "reviews/createReview";
 const EDIT_REVIEW = 'reviews/editReview';
 const DELETE_REVIEW = "reviews/deleteReview";
@@ -19,6 +20,11 @@ const loadUserReviews = (userReviews) => ({
 const loadReviewById = (review) => ({
     type: LOAD_REVIEW_BY_ID,
     review
+});
+
+const loadReviewsByGame = (gameReviews) => ({
+    type: LOAD_REVIEW_BY_ID,
+    gameReviews
 });
 
 const createReview = (review) => ({
@@ -58,6 +64,14 @@ export const getReviewById = (id) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(loadReviewById(data));
+    }
+};
+
+export const getReviewsByGame = (gameId) => async (dispatch) => {
+    const response = await fetch(`/api/games/${gameId}/reviews`);
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(loadReviewsByGame(data));
     }
 };
 
@@ -125,6 +139,13 @@ const reviewsReducer = (state = initialState, action) => {
         case LOAD_REVIEW_BY_ID:
             newState[action.review.id] = action.review
             return newState;
+
+        case LOAD_USER_REVIEWS:
+            newState = {}
+            action.gameReviews.forEach(review => {
+                newState[review.id] = review
+            });
+            return newState
 
         case CREATE_REVIEW:
             newState[action.review.id] = action.review
