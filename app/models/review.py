@@ -26,5 +26,6 @@ class Review(db.Model):
             'game_id': self.game_id,
             "content": self.content,
             "created_at": self.created_at,
-            "updated_at": self.updated_at
+            "updated_at": self.updated_at,
+            "User": self.user.to_dict()
         }

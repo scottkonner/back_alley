@@ -23,7 +23,7 @@ const loadReviewById = (review) => ({
 });
 
 const loadReviewsByGame = (gameReviews) => ({
-    type: LOAD_REVIEW_BY_ID,
+    type: LOAD_REVIEWS_BY_GAME,
     gameReviews
 });
 
@@ -90,7 +90,7 @@ export const createAReview = (gameId, review) => async (dispatch) => {
 };
 
 export const editReviewById = (gameId, reviewId, payload) => async (dispatch) => {
-    const response = await fetch(`/api/games/${gameId.id}/reviews/${reviewId.id}`, {
+    const response = await fetch(`/api/games/${gameId}/reviews/${reviewId}`, {
         headers: { "Content-Type": "application/json" },
         method: "PUT",
         body: JSON.stringify(payload)
@@ -140,7 +140,7 @@ const reviewsReducer = (state = initialState, action) => {
             newState[action.review.id] = action.review
             return newState;
 
-        case LOAD_USER_REVIEWS:
+        case LOAD_REVIEWS_BY_GAME:
             newState = {}
             action.gameReviews.forEach(review => {
                 newState[review.id] = review

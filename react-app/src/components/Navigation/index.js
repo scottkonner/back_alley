@@ -42,46 +42,34 @@ function Navigation() {
 	return (
 		<>
 		<div className='servers-bar'>
-
-
-			{/* DMS
-			<div className='server-card-pic add-server-pic discord-img'>
-			<NavLink className='server-card-pic' to={`/@me`}>
-				<img src={DiscordLogo} alt='Logo'/>
-				</NavLink>
-			</div> */}
-
-
-			{/* <div className='servers-list'>
-				{isLoaded && serversArr.map(server =>
-				 <ServerCard key={server.id} server={server} />
-
-				)}
-			</div> */}
-
-			{/* <div className='server-card-pic add-server-pic'>
-            <OpenModalImage
-                buttonText={AddServerImg}
-                modalComponent={<CreateServerModal />}
-                />
-        	</div> */}
-			<div>
-			{/* <div className='server-card-pic add-server-pic'>
-			<NavLink className='server-card-pic' to={`/guild-discovery`}>
-				<img src={DiscoveryLogo} alt='Logo'/>
-				</NavLink>
-			</div> */}
-
-			</div>
 			<div className="ProfileCard">
-
-				<img className="profile-avatar"src={UserIcon} alt='avatar'/>
-				<div>
-  					<p>{sessionUser.username}</p>
-  					<span className='profile-id'>#{sessionUser.id}</span>
+				<div className="profile-top">
+					{/* <img className="profile-avatar"src={UserIcon} alt='avatar'/> */}
+					<div>
+  						<p className="profile-username">Logged in as: {sessionUser.username}</p>
+					</div>
+					<img className="profile-logout" onClick={handleLogout} src={LogoutImg} alt="logout"/>
 				</div>
-				<img className="profile-logout" onClick={handleLogout} src={LogoutImg} alt="logout"/>
+				<div className="profile-userItems">
+					<ul className='profile-items'>
+        			<	NavLink className='Link-Text-profile-items' exact to="/wishlist">My Wishlist</NavLink>
+      				</ul>
+					<ul className='profile-items'>
+        				<NavLink className='Link-Text-profile-items' exact to="/shoppingcart">My Cart</NavLink>
+      				</ul>
+				</div>
+
 			</div>
+			<ul className='navBar'>
+      			<ul className='Nav-Items'>
+        			<NavLink className='Link-Text-Navbar-Home' exact to="/home">backAlley</NavLink>
+      			</ul>
+
+				  <ul className='Nav-Items'>
+        			<NavLink className='Link-Text-Navbar-Game' exact to="/newgame">New Game Post</NavLink>
+      			</ul>
+
+    		</ul>
 
 		</div>
 		</>

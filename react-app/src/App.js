@@ -7,7 +7,11 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import SplashPage from "./components/SplashPage";
-import HomePage from "./components/HomePage/HomePage";
+import HomePage from "./components/HomePage";
+import WishItemPage from "./components/WishItemPage";
+import ShopItemPage from "./components/ShopItemPage";
+import DetailedGame from "./components/DetailedGame";
+import APISearchPage from "./components/APISearchPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,18 +38,22 @@ function App() {
               <Navigation isLoaded={isLoaded} />
               <HomePage />
           </Route>
-          {/* <Route path="/home">
+          <Route path="/wishlist">
               <Navigation isLoaded={isLoaded} />
-              <HomePage />
+              <WishItemPage />
           </Route>
-          <Route path="/home">
+          <Route path="/shoppingcart">
               <Navigation isLoaded={isLoaded} />
-              <HomePage />
+              <ShopItemPage />
           </Route>
-          <Route path="/home">
+          <Route path="/games/:gameId" exact>
               <Navigation isLoaded={isLoaded} />
-              <HomePage />
-          </Route> */}
+              <DetailedGame />
+          </Route>
+          <Route path="/newgame" exact>
+              <Navigation isLoaded={isLoaded} />
+              <APISearchPage />
+          </Route>
           </ProtectedRoute>
         </Switch>
       )}

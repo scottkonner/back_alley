@@ -1,6 +1,6 @@
 import './ShopItemCard.css'
 import { useSelector, useDispatch } from 'react-redux'
-import { deleteSpot } from '../../store/spot'
+import { deleteCartItemById } from '../../store/shopping_cart_items'
 
 const ShopItemCard = ({ shopItem }) => {
     const dispatch = useDispatch()
@@ -16,11 +16,11 @@ if(sessionUser){
 
 
     const deleteHandler = () => {
-        dispatch(deleteSpot(shopItem.id))
+        dispatch(deleteCartItemById(shopItem.id))
     }
     return (
-        <div className="spotCard">
-            <div className='spotCard-Pic'>
+        <div className="spotCard">Hi Paul
+            {/* <div className='spotCard-Pic'>
                 <img  src={spot.previewImage} alt='not loading'></img>
             </div>
             <div className='spotCard-Name'>{spot.name}</div>
@@ -30,7 +30,7 @@ if(sessionUser){
                 <button className='spotCard-button'onClick={event => window.location.href=`/${spot.id}`}>Details</button>
                 {isOwner && <button className='spotCard-button' onClick={event => window.location.href=`/editspot/${spot.id}`}>Edit</button>}
                 {isOwner && <button className='spotCard-button' onClick={deleteHandler}>Delete</button>}
-            </div>
+            </div> */}
         </div>
     )
 }

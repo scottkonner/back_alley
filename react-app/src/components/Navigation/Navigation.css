@@ -1,26 +1,81 @@
-/* .profile-dropdown {
-  position: absolute;
-}
-
-.hidden {
-  display: none;
-}
-
 .servers-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 80px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: #1E1F22;
-
-  margin: 0;
+  position:relative;
+  justify-content: flex-end;
+  flex-direction: reverse;
+  background-color: #42454f;
 }
 
-.discord-img {
+.ProfileCard {
+  order:2
+}
+
+.profile-top {
+  display:flex;
+  flex-direction: row;
+}
+
+/* .profile-avatar {
+  width:32px;
+  height:32px;
+} */
+
+.profile-username {
+  margin-right: 10px;
+}
+.profile-logout {
+  width:32px;
+  height:32px;
+  /* margin-left:15px */
+}
+.profile-userItems{
+  color:white
+}
+
+.Link-Text-profile-items{
+  color:white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.Link-Text-profile-items:hover {
+  color: rgb(255, 230, 230)
+}
+.navBar {
+  order:1;
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+}
+
+.Link-Text-Navbar-Home{
+  font-size: 72px;
+  color:rgb(156, 87, 156);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.Link-Text-Navbar-Home:hover{
+  color: rgb(192, 47, 192)
+}
+
+.Link-Text-Navbar-Game {
+  color:white;
+  padding-left: 80px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.Link-Text-Navbar-Game:hover {
+  color: rgb(255, 230, 230)
+}
+
+.ProfileCard {
+  /* flex-direction: column;
+  justify-content: right;
+  align-items: center; */
+}
+/* .discord-img {
   margin-top: 25px;
 } */

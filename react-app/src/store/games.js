@@ -76,7 +76,7 @@ export const createAGame = (game) => async (dispatch) => {
 };
 
 export const editGameById = (gameId, payload) => async (dispatch) => {
-    const response = await fetch(`/api/servers/${gameId.id}`, {
+    const response = await fetch(`/api/games/${gameId}`, {
         headers: { "Content-Type": "application/json" },
         method: "PUT",
         body: JSON.stringify(payload)

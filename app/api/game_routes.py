@@ -49,13 +49,14 @@ def createGame():
     # form = NewGame()
     # form['csrf_token'].data = request.cookies['csrf_token']
     # if form.validate_on_submit():
+    data = request.get_json()
     game_post = Game(
         user_id = current_user.id,
-        # API_id = current_user.id,
-        # name = data['name'],
-        name = data['price'],
+        API_id = data['API_id'],
+        name = data['name'],
+        price = data['price'],
         store = data['store'],
-        # icon = form.name.data,
+        icon = data['icon'],
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )

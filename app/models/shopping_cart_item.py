@@ -23,5 +23,7 @@ class Shopping_Cart_Item(db.Model):
             'id':self.id,
             'user_id': self.user_id,
             'game_id': self.game_id,
-            'quantity': self.quantity
+            'quantity': self.quantity,
+            "User": self.user.to_dict(),
+            "Game": self.game.to_dict()
         }

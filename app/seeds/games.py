@@ -8,7 +8,7 @@ games = [
         "name": "BioShock",
         "store": "Target",
         "price": 5.50,
-        "icon": "https://www.gamersgate.com/media/products/profile/107751/180_259.jpg/w90/",
+        "icon": "https://cdn.cloudflare.steamstatic.com/steam/apps/7670/header.jpg?t=1568739889",
         "created_at": datetime.utcnow(),
         "updated_at": datetime.utcnow()
     },
@@ -18,7 +18,7 @@ games = [
         "name": "Red Orchestra 2: Heroes of Stalingrad",
         "store": "Epic Store",
         "price": 9.99,
-        "icon": "https://www.gamersgate.com/media/products/profile/89364/180_259.jpg/w90/",
+        "icon": "https://cdn.cloudflare.steamstatic.com/steam/apps/35450/header.jpg?t=1552425243",
         "created_at": datetime.utcnow(),
         "updated_at": datetime.utcnow()
     },

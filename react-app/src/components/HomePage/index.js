@@ -2,7 +2,7 @@ import './HomePage.css';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllGames } from '../../store/games';
-import GameCard from '../GameCard/GameCard';
+import GameCard from '../GameCard';
 
 
 const searchedGames = (query, gamePosts) => {
@@ -29,7 +29,10 @@ const HomePage = () => {
 
     return (
     <div>
-        <input type="text" onChange={e => setQuery(e.target.value)} />
+        <input
+        type="text"
+        placeholder="Search for deals here!"
+        onChange={e => setQuery(e.target.value)} />
         <div className='gameList'>
             {gamePosts.map(game =>
             <GameCard  game ={game}/>
