@@ -20,6 +20,7 @@ const ShopItemPage = () => {
 
     return (
     <div>
+        <div className='ShopItem-title'>My Cart</div>
         <div className='gameList'>
             {itemsArr.map(shopItem =>
             <ShopItemCard  shopItem ={shopItem}/>

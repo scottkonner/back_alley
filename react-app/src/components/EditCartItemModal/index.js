@@ -11,16 +11,18 @@ function EditCartItemModal({cartItem}) {
   const [errors, setErrors] = useState('');
   const { closeModal } = useModal();
 
+console.log('this is the cart item:', cartItem.id)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = await dispatch(editCartItemById(cartItem.id, { quantity }));
-    if (data) {
-      const {error} = await data.json()
-      setErrors(error);
-    } else {
+    // if (data) {
+    //   const {error} = await data.json()
+    //   setErrors(error);
+    // } else {
         closeModal()
-    }
+    // }
   };
 
   return (
@@ -30,7 +32,7 @@ function EditCartItemModal({cartItem}) {
         {/* <h2>Edit Your Review</h2> */}
         <form onSubmit={handleSubmit}>
           <div className="edit-server-modal-input-container">
-            <label htmlFor="name">Your Review</label>
+            <label htmlFor="name">How many copies would you like?</label>
             <input
               type="text"
               name="quantity"
@@ -40,7 +42,7 @@ function EditCartItemModal({cartItem}) {
             />
           </div>
           <div className="edit-server-modal-button-container">
-            <button type="submit">Edit</button>
+            <button type="submit">Submit</button>
             <button type="button" onClick={closeModal}>
               Close
             </button>

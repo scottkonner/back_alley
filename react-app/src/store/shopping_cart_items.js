@@ -62,11 +62,11 @@ export const getCartItemById = (id) => async (dispatch) => {
 };
 
 
-export const createACartItem = (gameId, cartItem) => async (dispatch) => {
-    const response = await fetch(`/api/games/${gameId.id}`, {
+export const createACartItem = (gameId) => async (dispatch) => {
+    const response = await fetch(`/api/games/${gameId}/cart`, {
         headers: { "Content-Type": "application/json" },
         method: "POST",
-        body: JSON.stringify(cartItem)
+        body: JSON.stringify({})
     });
     if (response.ok) {
         const cartItem = await response.json();
@@ -76,7 +76,7 @@ export const createACartItem = (gameId, cartItem) => async (dispatch) => {
 };
 
 export const editCartItemById = (cartItemId, payload) => async (dispatch) => {
-    const response = await fetch(`/api/users/current/cart/${cartItemId.id}`, {
+    const response = await fetch(`/api/users/current/cart/${cartItemId}`, {
         headers: { "Content-Type": "application/json" },
         method: "PUT",
         body: JSON.stringify(payload)

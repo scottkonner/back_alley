@@ -20,6 +20,7 @@ const WishItemPage = () => {
 
     return (
     <div>
+        <div className='WishItem-title'>My Wishlist</div>
         <div className='gameList'>
             {itemsArr.map(wishItem =>
             <WishItemCard  wishItem ={wishItem}/>

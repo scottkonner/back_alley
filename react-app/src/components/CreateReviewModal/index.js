@@ -3,26 +3,27 @@ import { createAReview } from "../../store/reviews";
 import { useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom'
 import { useModal } from "../../context/Modal";
-import "./EditReviewModal.css";
+import "./CreateReviewModal.css";
 
-function CreateReviewModal() {
+function CreateReviewModal({game}) {
   const dispatch = useDispatch();
-  const {gameId} = useParams()
+  // const {gameId} = useParams()
   // const selectedServer = useSelector(state => state.spotState[parseInt(spotId)])  pull the server id from the server state
   const [content, setContent] = useState();
   const [errors, setErrors] = useState('');
   const { closeModal } = useModal();
 
+  console.log('right here my guy:', game)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = await dispatch(createAReview(gameId, { content }));
-    if (data) {
-      const {error} = await data.json()
-      setErrors(error);
-    } else {
+    const data = await dispatch(createAReview(game.id, { content }));
+    // if (data) {
+    //   const {error} = await data.json()
+    //   setErrors(error);
+    // } else {
         closeModal()
-    }
+    // }
   };
 
   return (

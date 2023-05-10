@@ -103,13 +103,13 @@ export const editReviewById = (gameId, reviewId, payload) => async (dispatch) =>
     return response
 };
 
-export const deleteReviewById = (gameId, reviewId) => async (dispatch) => {
-    const response = await fetch(`/api/games/${gameId}/reviews/${reviewId.id}`, {
+export const deleteReviewById = (gameId, review) => async (dispatch) => {
+    const response = await fetch(`/api/games/${gameId}/reviews/${review.id}`, {
         method: "DELETE",
     });
 
     if (response.ok) {
-        dispatch(deleteReview(gameId))
+        dispatch(deleteReview(review.id))
     }
 };
 

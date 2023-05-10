@@ -63,7 +63,7 @@ export const getWishItemById = (id) => async (dispatch) => {
 
 
 export const createAWishItem = (gameId, wishItem) => async (dispatch) => {
-    const response = await fetch(`/api/games/${gameId.id}`, {
+    const response = await fetch(`/api/games/${gameId}/wishlist`, {
         headers: { "Content-Type": "application/json" },
         method: "POST",
         body: JSON.stringify(wishItem)

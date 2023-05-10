@@ -8,6 +8,9 @@ import ReviewList from '../ReviewList/index';
 import OpenModalButton from '../OpenModalButton';
 import './DetailedGame.css'
 import EditGameModal from '../EditGameModal';
+import CreateReviewModal from '../CreateReviewModal';
+import { createACartItem } from '../../store/shopping_cart_items'
+import { createAWishItem } from '../../store/wishlist_items'
 
 const DetailedGame = () => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -60,6 +63,16 @@ console.log('this is the game:', selectedGame)
         history.push('/home')
     }
 
+    const addToCart = () => {
+        dispatch(createACartItem(selectedGame.id))
+        history.push('/shoppingcart')
+    }
+
+    const addToWishlist = () => {
+        dispatch(createAWishItem(selectedGame.id, ))
+        history.push('/wishlist')
+    }
+
     return isLoaded ? (
         <div className='detailedSpot'>
             <div className='detailedSpot-pic'>
@@ -73,23 +86,31 @@ console.log('this is the game:', selectedGame)
             <div className='detailedSpot-text'>Last Updated: {selectedGame.updated_at}</div>
 
             <div className='detailedSpot-buttonBlock'>
-                <button onClick={openMenu} className='detailedSpot-button'>
+                {/* <button onClick={openMenu} className='detailedSpot-button'>
                     Reviews
-                </button>
+                </button> */}
+            <div className='detailedGame-button'>
+            <OpenModalButton
+                buttonText="Leave a Review"
+                modalComponent={<CreateReviewModal game={selectedGame} />}
+                />
+            </div>
             {isOwner && <div className='detailedGame-button'>
             <OpenModalButton
-                buttonText="Edit"
+                buttonText="Edit Game Post"
                 modalComponent={<EditGameModal game={selectedGame} />}
                 />
             </div>}
-                {isOwner && <button onClick={deleteHandler} className='detailedGame-button'>Delete</button>}
+                {isOwner && <button onClick={deleteHandler} className='detailedGame-button'>Delete Game Post</button>}
+                <button onClick={addToCart} className='detailedGame-button'>Add To Cart</button>
+                <button onClick={addToWishlist} className='detailedGame-button'>Add To Wishlist</button>
             </div>
-            {showMenu && (
+
                 <div className="profile-dropdown">
                     <ReviewList />
 
                 </div>
-            )}
+
 
 
 

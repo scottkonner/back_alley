@@ -1,4 +1,6 @@
-
+.ShopItem-title{
+color: white
+}
 
 .gameList{
     display:flex;

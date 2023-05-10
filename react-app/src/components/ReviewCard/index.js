@@ -11,17 +11,12 @@ const ReviewCard = ({ review }) => {
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
 
-    // let isOwner;
-
 if(sessionUser){
      var isOwner = sessionUser.id === review.user_id
 }
 
-console.log('reviewOwner Id:', review)
-
-
     const deleteHandler = () => {
-        dispatch(deleteReviewById(review.id))
+        dispatch(deleteReviewById(review.game_id, review))
 
     }
     return (
