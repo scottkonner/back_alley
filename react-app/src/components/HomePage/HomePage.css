@@ -1,4 +1,11 @@
+/* .HomePage-container{
+    display: flex,
+    flex-direction: column,
+}
 
+.HomePage-search{
+    /* position: relative; */
+} */
 
 .gameList{
     display:flex;

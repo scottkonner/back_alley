@@ -28,9 +28,10 @@ const HomePage = () => {
 
 
     return (
-    <div>
+    <div className='HomePage-container'>
         <input
         type="text"
+        className='HomePage-search'
         placeholder="Search for deals here!"
         onChange={e => setQuery(e.target.value)} />
         <div className='gameList'>
