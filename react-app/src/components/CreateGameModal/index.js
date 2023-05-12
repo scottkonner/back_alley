@@ -14,20 +14,21 @@ function CreateGameModal({game}) {
   const [errors, setErrors] = useState('');
   const { closeModal } = useModal();
 
+
+  const fixedPrice = parseFloat(price).toFixed(2);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
 
     const gamePayload = {
       user_id: sessionUser.id,
       API_id: game.gameID,
       name: game.external,
       store,
-      price,
+      price: fixedPrice,
       icon: game.thumb
     }
 
-    console.log('should have something', gamePayload)
     const data = await dispatch(createAGame(gamePayload));
     // if (data) {
     //   const {error} = await data.json()
@@ -39,7 +40,7 @@ function CreateGameModal({game}) {
   };
 
   return (
-    <div className="edit-server-modal">
+    <div className="CreateGameModal-Main">
       <div className="edit-server-modal-content">
 
         <h2>Whats the deal?</h2>

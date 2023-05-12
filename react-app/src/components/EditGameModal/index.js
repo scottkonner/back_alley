@@ -17,6 +17,9 @@ function EditGameModal({game}) {
   const [errors, setErrors] = useState('');
   const { closeModal } = useModal();
 
+
+  const fixedPrice = parseFloat(price).toFixed(2);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -26,7 +29,7 @@ function EditGameModal({game}) {
       API_id,
       name,
       store,
-      price,
+      price: fixedPrice,
       icon
     }
 

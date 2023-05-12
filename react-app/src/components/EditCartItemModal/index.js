@@ -34,7 +34,7 @@ console.log('this is the cart item:', cartItem.id)
           <div className="edit-server-modal-input-container">
             <label htmlFor="name">How many copies would you like?</label>
             <input
-              type="text"
+              type="number"
               name="quantity"
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}

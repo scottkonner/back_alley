@@ -15,7 +15,8 @@ import { createAWishItem } from '../../store/wishlist_items'
 const DetailedGame = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
-    const [showButton, setShowButton] = useState(true)
+    const [reviewed, setReviewed] = useState(false);
+    const [showButton, setShowButton] = useState(true);
     let history = useHistory()
 
     const dispatch = useDispatch()
@@ -23,7 +24,10 @@ const DetailedGame = () => {
     const sessionUser = useSelector(state => state.session.user)
     const gamesObj = useSelector(state => state.games)
     const selectedGame = Object.values(gamesObj)[0];
-console.log('this is the game:', selectedGame)
+    const reviewsObj = useSelector(state => state.reviews)
+    const reviewsArr = Object.values(reviewsObj);
+console.log('this is the game:', reviewsArr)
+
 
     useEffect(() => {
         dispatch(getGameById(gameId))
@@ -32,14 +36,15 @@ console.log('this is the game:', selectedGame)
 
     }, [dispatch])
 
-    const reviewsObj = useSelector(state => state.reviews)
-    const reviewsArr = Object.values(reviewsObj);
+
     // const findTheReview = reviewsArr.find(review => review.userId === sessionUser.id)
 
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
     };
+
+
 
     useEffect(() => {
         if (!showMenu) return;
@@ -55,7 +60,7 @@ console.log('this is the game:', selectedGame)
 
     if (sessionUser && selectedGame) {
         var isOwner = sessionUser.id === selectedGame.user_id
-        var findTheReview = reviewsArr.find(review => review.game_id === selectedGame.id)
+        var findTheReview = reviewsArr.find(review => (review.game_id === selectedGame.id) && (review.user_id === sessionUser.id) )
     }
 
     const deleteHandler = () => {
@@ -86,15 +91,13 @@ console.log('this is the game:', selectedGame)
             <div className='detailedSpot-text'>Last Updated: {selectedGame.updated_at}</div>
 
             <div className='detailedSpot-buttonBlock'>
-                {/* <button onClick={openMenu} className='detailedSpot-button'>
-                    Reviews
-                </button> */}
-            <div className='detailedGame-button'>
+
+            {!findTheReview && <div className='detailedGame-button'>
             <OpenModalButton
                 buttonText="Leave a Review"
                 modalComponent={<CreateReviewModal game={selectedGame} />}
                 />
-            </div>
+            </div>}
             {isOwner && <div className='detailedGame-button'>
             <OpenModalButton
                 buttonText="Edit Game Post"
