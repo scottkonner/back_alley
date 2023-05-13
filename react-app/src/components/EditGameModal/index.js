@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import {editGameById } from "../../store/games";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { useModal } from "../../context/Modal";
 import "./EditGameModal.css";
 
 function EditGameModal({game}) {
   const dispatch = useDispatch();
+  let history = useHistory()
   const sessionUser = useSelector(state => state.session.user);
   const [user_id, setUser_id] = useState(game.user_id);
   const [API_id, setAPI_id] = useState(game.API_id);
@@ -41,6 +42,7 @@ function EditGameModal({game}) {
     //   setErrors(error);
     // } else {
         closeModal()
+        history.push(`/games/${game.id}`)
     // }
   };
 

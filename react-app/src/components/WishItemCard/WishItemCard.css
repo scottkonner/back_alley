@@ -1,5 +1,5 @@
 
-.spotCard-button {
+.wishItemCard-button {
     background-color: #6288a5;
     border-radius: 3px;
     color: white;
@@ -10,7 +10,7 @@
     padding: 4px 9px;
   }
 
-.spotCard-Name{
+.wishItemCard-Name{
     /* margin:1rem; */
     margin-top:0.5rem;
     /* margin-bottom:0rem; */
@@ -21,7 +21,7 @@
 
 
 
-.spotCard-Pic img{
+.wishItemCard-Pic img{
     overflow:hidden;
     height:200px;
     width:300px;
@@ -31,7 +31,7 @@
 
 
 
-.spotCard{
+.wishItemCard{
     display:flex;
     flex-direction:column;
     align-items:center;

@@ -12,19 +12,22 @@ const ShopItemPage = () => {
     const itemsObj = useSelector(state => state.cartItems)
     const itemsArr = Object.values(itemsObj);
 
-
     useEffect(() => {
         dispatch(getUserCartItems()).then(() => setIsLoaded(true))
     }, [dispatch])
 
 
     return (
-    <div>
-        <div className='ShopItem-title'>My Cart</div>
-        <div className='gameList'>
-            {itemsArr.map(shopItem =>
-            <ShopItemCard  shopItem ={shopItem}/>
-            )}
+    <div className='ShopItemPage'>
+        <div className='ShopItemPage-header'>
+            <div className='ShopItemPage-title'>My Cart</div>
+        </div>
+        <div>
+            <div className='ShopItemPage-gameList'>
+                {itemsArr.map(shopItem =>
+                <ShopItemCard  shopItem ={shopItem}/>
+                )}
+            </div>
         </div>
     </div>
     )

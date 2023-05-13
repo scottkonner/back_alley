@@ -1,19 +1,12 @@
-import './APISearchPage.css';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { getAllGames } from '../../store/games';
+import { getAllGames } from '../../store/games';
 import APISearchCard from '../APISearchCard';
-import OpenModalButton from '../OpenModalButton';
+import OpenModalButtonLarge from '../OpenModalButtonLarge';
 import CreateGameModal from '../CreateGameModal';
+import EditGameModal from '../EditGameModal';
+import './APISearchPage.css';
 
-
-// const searchedGames = (query, gamePosts) => {
-//     if (!query) {
-//         return gamePosts
-//     }
-//     let queryLow = query.toLowerCase()
-//     return gamePosts.filter(game => game.name.toLowerCase().includes(queryLow))
-// }
 
 const APISearchPage = () => {
     const [isLoaded, setIsLoaded] = useState(false)
@@ -23,15 +16,20 @@ const APISearchPage = () => {
     const [selected, setSelected] = useState(null)
     const gamesObj = useSelector(state => state.games)
     const gamesArr = Object.values(gamesObj);
-    // const APIArr = Object.values(data);
-    console.log('-----------', selected)
 
 
     if(data){
         var APIArr = Object.values(data);
     }
 
-    // const gamePosts = searchedGames( query, gamesArr)
+    if(selected){
+      var findTheGame = gamesArr.find(game => (game.API_id === parseInt(selected.gameID)))
+    }
+
+    useEffect(() => {
+      dispatch(getAllGames())
+
+    }, [dispatch])
 
     useEffect(() => {
         if(!query){
@@ -73,43 +71,51 @@ const APISearchPage = () => {
         else {
             console.log('bad response from API')
         }
-      }
+    }
 
-    // const handleSelectedChange = (game) => {
-    //     console.log('changed')
-    //     console.log(APIArr[3])
-    //     console.log(game)
-    //     setSelected(game);
-    //     console.log('-----------', selected)
-    //   };
 
     const sendWithEnter = (e) => {
         if(e.key === "Enter") handleSubmit()
       }
 
     return (
-      <div>
-        <div>First step, search for the game you wish to post</div>
-        <div className="chat-input-container">
+      <div className='APISearchPage-container'>
+        <div className='APISearchPage-header-container'>
+          <div className='APISearchPage-title'>Create a new Post!</div>
+          <div className='APISearchPage-text'>First step, search for the game you wish to post</div>
+          <div className="APISearchPage-search-container">
           <input
           type="text"
+          className="APISearchPage-search"
           placeholder="Search here..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={sendWithEnter}
             />
-          <button onClick={handleSubmit}>Send</button>
+          <button className="APISearchPage-search-button" onClick={handleSubmit}>Search</button>
         </div>
-        {APIArr && selected && <span className="edit-icon">
+        <div className='APISearchPage-selected-container'>
+            {APIArr && selected && !findTheGame && <span className="APISearchPage-selected-button">
                <div className=''>
-                 <OpenModalButton
+                 <OpenModalButtonLarge
                    buttonText="Select Game"
                    modalComponent={<CreateGameModal game={selected}/>}
                  />
         	     </div>
               </span>}
+            {APIArr && selected && findTheGame && <span className="APISearchPage-selected-button">
+               <div className=''>
+                 <OpenModalButtonLarge
+                   buttonText="Select Game"
+                   modalComponent={<EditGameModal game={findTheGame}/>}
+                 />
+        	     </div>
+              </span>}</div>
+
+        </div>
+
         <div>
-        {APIArr && <div className='API-gameList'>
+        {APIArr && <div className='APISearchPage-gameList'>
             {APIArr.map(game =>(
                 <>
             <APISearchCard  game ={game} selected ={selected} setSelected ={setSelected}/>

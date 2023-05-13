@@ -10,6 +10,10 @@
     padding: 4px 9px;
   }
 
+  .gameCard-button:hover{
+    background-color: rgba(98, 136, 165, 0.9);
+  }
+
 .gameCard-Name{
     /* margin:1rem; */
     margin-top:0.5rem;
@@ -36,7 +40,7 @@
     flex-direction:column;
     align-items:center;
     width: 300px;
-    height:190px;
+    height:210px;
     margin:20px;
     border: 3px black solid;
     overflow:hidden;

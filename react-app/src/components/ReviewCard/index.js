@@ -2,7 +2,7 @@ import './ReviewCard.css'
 import { useSelector, useDispatch } from 'react-redux'
 // import { useParams } from 'react-router-dom'
 import { editReviewById, deleteReviewById } from '../../store/reviews'
-import OpenModalButton  from '../OpenModalButton';
+import OpenModalButtonSmall  from '../OpenModalButtonSmall';
 import EditReviewModal  from '../EditReviewModal';
 import EditIconImg from '../../assets/pencil.png'
 import DeleteImg from '../../assets/delete.png'
@@ -22,16 +22,16 @@ if(sessionUser){
     return (
         <div className="reviewCard">
             <div>{review.content}</div>
-            <div>By {review.User.name}</div>
-            {isOwner && <div className='detailedGame-button'>
-            <OpenModalButton
+            <div>By {review.User.username}</div>
+            {isOwner && <div>
+            <OpenModalButtonSmall
                 buttonText="Edit"
                 modalComponent={<EditReviewModal review={review} />}
                 />
             </div>}
-              {isOwner && <span className="delete-icon" onClick={deleteHandler}>
-                <img src={DeleteImg} />
-              </span>}
+              {isOwner && <div  onClick={deleteHandler}>
+                <button className="reviewCard-button">Delete</button>
+              </div>}
         </div>
     )
 }

@@ -1,15 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import ServerCard from './ServerCard';
 import { NavLink, useLocation, useHistory } from 'react-router-dom';
-// import ProfileButton from './ProfileButton';
-// import CreateServerModal from '../CreateServerModal';
-// import { getUserServers } from "../../store/servers"
-// import { getAllChannelsInServer } from '../../store/channels';
 import OpenModalImage from '../OpenModalImage';
-// import DiscoveryLogo from '../../assets/compass.png'
-// import DiscordLogo from '../../assets/discord.png'
-// import AddServerImg from '../../assets/addServer.png'
 import { logout } from "../../store/session";
 import UserIcon from '../../assets/user.png'
 import LogoutImg from '../../assets/logout.png'
@@ -20,18 +12,6 @@ function Navigation() {
 	const dispatch = useDispatch()
 	const [isLoaded, setIsLoaded] = useState(false)
 	const sessionUser = useSelector(state => state.session.user);
-	// const userServers = servers.currentUserServers
-	// const location = useLocation()
-	// const history = useHistory()
-
-
-	// useEffect(() => {
-	// 	dispatch(getUserServers()).then(()=>setIsLoaded(true))
-	// }, [dispatch])
-
-
-
-	// const serversArr = Object.values(userServers);
 
 	const handleLogout = (e) => {
 		e.preventDefault();
@@ -66,7 +46,9 @@ function Navigation() {
       			</ul>
 
 				  <ul className='Nav-Items'>
-        			<NavLink className='Link-Text-Navbar-Game' exact to="/newgame">New Game Post</NavLink>
+        			<NavLink className='Link-Text-Navbar-Game' exact to="/newgame">
+						<button className='Navigation-newGame-button'>New Game Post</button>
+					</NavLink>
       			</ul>
 
     		</ul>

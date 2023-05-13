@@ -1,12 +1,13 @@
 import './ShopItemCard.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteCartItemById } from '../../store/shopping_cart_items'
-import OpenModalButton from '../OpenModalButton';
+import OpenModalButtonSmall from '../OpenModalButtonSmall';
 import EditCartItemModal from '../EditCartItemModal';
 
 const ShopItemCard = ({ shopItem }) => {
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
+    const displayPrice = (shopItem.Game.price).toFixed(2)
 
 if(sessionUser){
      var isOwner = sessionUser.id === shopItem.user_id
@@ -18,22 +19,22 @@ if(sessionUser){
         dispatch(deleteCartItemById(shopItem.id))
     }
     return (
-        <div className="spotCard">
-            <div className='spotCard-Pic'>
+        <div className="shopItemCard">
+            <div className='shopItemCard-Pic'>
                 <img  src={shopItem.Game.icon} alt='not loading'></img>
             </div>
-            <div className='spotCard-Name'>{shopItem.Game.name}</div>
-            <div className='spotCard-Location'>Quantity: {shopItem.quantity}</div>
-            <div className='spotCard-Price'>Price${shopItem.Game.price}</div>
-            <div className='spotCard-Price'>Total: ${totalPrice}</div>
+            <div className='shopItemCard-Name'>{shopItem.Game.name}</div>
+            <div className='shopItemCard-Location'>Quantity: {shopItem.quantity}</div>
+            <div className='shopItemCard-Price'>Price${displayPrice}</div>
+            <div className='shopItemCard-Price'>Total: ${totalPrice}</div>
             <div className='spotCard-buttonBlock'>
-            {isOwner && <div className='detailedGame-button'>
-            <OpenModalButton
+            {isOwner && <div>
+            <OpenModalButtonSmall
                 buttonText="Edit"
                 modalComponent={<EditCartItemModal cartItem={shopItem} />}
                 />
             </div>}
-                {isOwner && <button className='spotCard-button' onClick={deleteHandler}>Delete</button>}
+                {isOwner && <button className='shopItemCard-button' onClick={deleteHandler}>Delete</button>}
             </div>
         </div>
     )

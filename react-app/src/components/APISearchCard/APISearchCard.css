@@ -11,12 +11,9 @@
   }
 
 .APICard-Name{
-    /* margin:1rem; */
-    margin-top:0.5rem;
-    /* margin-bottom:0rem; */
+    margin-top:0.25rem;
     font-size:18px;
     font-weight:bold;
-
 }
 
 
@@ -36,7 +33,7 @@
     flex-direction:column;
     align-items:center;
     width: 300px;
-    height:150px;
+    height:160px;
     margin:20px;
     border: 3px black solid;
     overflow:hidden;

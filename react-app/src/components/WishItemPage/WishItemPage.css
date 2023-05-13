@@ -1,8 +1,18 @@
-.WishItem-title{
-    color:white
+.WishItemPage-header{
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
 }
 
-.gameList{
+.WishItemPage-title{
+    color:white;
+    font-size: 22px;
+    margin: 10px 130px 0px 0px;
+    text-decoration: underline;
+}
+
+.WishItemPage-gameList{
     display:flex;
     margin: 5px;
 }

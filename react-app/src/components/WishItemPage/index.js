@@ -10,7 +10,6 @@ const WishItemPage = () => {
     const dispatch = useDispatch()
 
     const itemsObj = useSelector(state => state.wishItems)
-    console.log('is this bad?' , itemsObj)
     const itemsArr = Object.values(itemsObj);
 
     useEffect(() => {
@@ -19,12 +18,16 @@ const WishItemPage = () => {
 
 
     return (
-    <div>
-        <div className='WishItem-title'>My Wishlist</div>
-        <div className='gameList'>
-            {itemsArr.map(wishItem =>
-            <WishItemCard  wishItem ={wishItem}/>
-            )}
+    <div className='WishItemPage'>
+        <div className='WishItemPage-header'>
+            <div className='WishItemPage-title'>My Wishlist</div>
+        </div>
+        <div>
+            <div className='WishItemPage-gameList'>
+                {itemsArr.map(wishItem =>
+                <WishItemCard  wishItem ={wishItem}/>
+                )}
+            </div>
         </div>
     </div>
     )

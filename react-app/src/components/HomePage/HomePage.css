@@ -1,5 +1,29 @@
+.HomePage-container {
+    display:flex;
+    flex-direction: column;
+}
 
-.gameList{
+.HomePage-search-container{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.HomePage-search{
+    position: relative;
+    height:40px;
+    width:30%;
+    max-width: 400px;
+    border-radius: 10px;
+    margin: 25px 130px 0px 0px;
+    font-size: 22px;
+}
+
+.HomePage-search::placeholder{
+    text-align: center;
+}
+
+.HomePage-gameList{
     display:flex;
     flex-wrap: wrap;
     margin: 5px;

@@ -1,0 +1,15 @@
+.ModalButtonSmall-button{
+    background-color: #6288a5;
+    border-radius: 3px;
+    color: white;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    margin: 0 4px;
+    padding: 4px 9px;
+    cursor: pointer;
+}
+
+.ModalButtonSmall-button:hover{
+    background-color: rgba(98, 136, 165, 0.9);
+}

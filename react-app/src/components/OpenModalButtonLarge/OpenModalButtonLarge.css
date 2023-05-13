@@ -1,0 +1,16 @@
+.ModalButtonLarge-button{
+    height:46px;
+    border-radius: 10px;
+    margin: 25px 130px 0px 0px;
+    font-size: 22px;
+    background-color: rgb(98, 136, 165);
+    color: white;
+    border-width: 4px;
+    font-family: arial, helvetica, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.ModalButtonLarge-button:hover{
+    background-color: rgba(98, 136, 165, 0.9);
+}

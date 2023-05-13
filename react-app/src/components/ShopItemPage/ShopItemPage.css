@@ -1,8 +1,18 @@
-.ShopItem-title{
-color: white
+.ShopItemPage-header{
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
 }
 
-.gameList{
+.ShopItemPage-title{
+    color:white;
+    font-size: 22px;
+    margin: 10px 130px 0px 0px;
+    text-decoration: underline;
+}
+
+.ShopItemPage-gameList{
     display:flex;
     margin: 5px;
 }

@@ -1,6 +1,87 @@
+.APISearchPage-container {
+    display:flex;
+    flex-direction: column;
+}
 
+.APISearchPage-header-container{
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
 
-.API-gameList{
+.APISearchPage-title{
+    color:white;
+    font-size: 22px;
+    margin: 10px 130px 0px 0px;
+    text-decoration: underline;
+}
+
+.APISearchPage-text{
+    color:white;
+    font-size: 16px;
+    margin: 20px 130px 0px 0px;
+}
+
+.APISearchPage-search-container{
+    /* position: relative;
+    height:40px; */
+    /* width:30%; */
+    max-width: 400px;
+    border-radius: 10px;
+    margin: 0px 130px 0px 0px;
+    font-size: 22px;
+}
+
+.APISearchPage-search{
+    position: relative;
+    height:40px;
+    max-width: 400px;
+    border-radius: 10px;
+    margin: 25px 0px 0px 0px;
+    font-size: 22px;
+}
+
+.APISearchPage-search-button{
+    height:46px;
+    max-width: 400px;
+    border-radius: 10px;
+    margin: 25px 0px 0px 0px;
+    font-size: 22px;
+    background-color: rgb(98, 136, 165);
+    color: white;
+    border-width: 4px;
+    font-family: arial, helvetica, sans-serif;
+    font-weight: bold;
+
+}
+
+.APISearchPage-search-button:hover{
+    background-color: rgba(98, 136, 165, 0.9);
+}
+
+.APISearchPage-selected-container{
+    height:60px
+}
+
+.APISearchPage-selected-button{
+    height:46px;
+    max-width: 400px;
+    border-radius: 10px;
+    margin: 25px 0px 0px 0px;
+    font-size: 22px;
+    background-color: rgb(98, 136, 165);
+    color: white;
+    border-width: 4px;
+    font-family: arial, helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.APISearchPage-selected-button:hover{
+    background-color: rgba(98, 136, 165, 0.9);
+}
+
+.APISearchPage-gameList{
     display:flex;
     flex-wrap: wrap;
     margin: 5px;

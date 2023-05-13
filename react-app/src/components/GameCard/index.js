@@ -5,12 +5,12 @@ import { deleteGameById } from '../../store/games'
 const GameCard = ({ game }) => {
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
+    const displayPrice = (game.price).toFixed(2)
 
-    // let isOwner;
 
-if(sessionUser){
-     var isOwner = sessionUser.id === game.userId
-}
+    if(sessionUser){
+        var isOwner = sessionUser.id === game.userId
+    }
 
 
 
@@ -25,7 +25,7 @@ if(sessionUser){
             </div>
             <div className='gameCard-Name'>{game.name}</div>
             <div className='gameCard-Location'>{game.store}</div>
-            <div className='gameCard-Price'>${game.price}</div>
+            <div className='gameCard-Price'>${displayPrice}</div>
             <div className='gameCard-buttonBlock'>
                 <button className='gameCard-button'onClick={event => window.location.href=`/games/${game.id}`}>Details</button>
                 {isOwner && <button className='gameCard-button' onClick={event => window.location.href=`/editspot/${game.id}`}>Edit</button>}

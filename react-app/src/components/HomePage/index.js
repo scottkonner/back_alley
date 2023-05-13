@@ -29,12 +29,15 @@ const HomePage = () => {
 
     return (
     <div className='HomePage-container'>
-        <input
-        type="text"
-        className='HomePage-search'
-        placeholder="Search for deals here!"
-        onChange={e => setQuery(e.target.value)} />
-        <div className='gameList'>
+        <div className='HomePage-search-container'>
+            <input
+            type="text"
+            className='HomePage-search'
+            placeholder="Search for deals here!"
+            onChange={e => setQuery(e.target.value)} />
+        </div>
+
+        <div className='HomePage-gameList'>
             {gamePosts.map(game =>
             <GameCard  game ={game}/>
             )}

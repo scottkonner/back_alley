@@ -5,12 +5,12 @@ import { useHistory } from 'react-router-dom';
 import { getGameById, deleteGameById } from '../../store/games';
 import { getReviewsByGame } from '../../store/reviews';
 import ReviewList from '../ReviewList/index';
-import OpenModalButton from '../OpenModalButton';
+import OpenModalButtonSmall from '../OpenModalButtonSmall';
 import './DetailedGame.css'
 import EditGameModal from '../EditGameModal';
 import CreateReviewModal from '../CreateReviewModal';
-import { createACartItem } from '../../store/shopping_cart_items'
-import { createAWishItem } from '../../store/wishlist_items'
+import { createACartItem, getUserCartItems } from '../../store/shopping_cart_items'
+import { createAWishItem, getUserWishItems } from '../../store/wishlist_items'
 
 const DetailedGame = () => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -26,12 +26,20 @@ const DetailedGame = () => {
     const selectedGame = Object.values(gamesObj)[0];
     const reviewsObj = useSelector(state => state.reviews)
     const reviewsArr = Object.values(reviewsObj);
-console.log('this is the game:', reviewsArr)
+    const cartObj = useSelector(state => state.cartItems)
+    const cartArr = Object.values(cartObj);
+    const wishObj = useSelector(state => state.wishItems)
+    const wishArr = Object.values(wishObj);
+    const displayPrice = (selectedGame.price).toFixed(2)
 
+console.log('this is normal dispatch:', gameId)
+console.log('this is wishlist:',wishObj)
 
     useEffect(() => {
         dispatch(getGameById(gameId))
             .then(() => dispatch(getReviewsByGame(gameId)))
+            .then(() => dispatch(getUserCartItems()))
+            .then(() => dispatch(getUserWishItems()))
             .then(() => setIsLoaded(true))
 
     }, [dispatch])
@@ -61,6 +69,8 @@ console.log('this is the game:', reviewsArr)
     if (sessionUser && selectedGame) {
         var isOwner = sessionUser.id === selectedGame.user_id
         var findTheReview = reviewsArr.find(review => (review.game_id === selectedGame.id) && (review.user_id === sessionUser.id) )
+        var isInCart = cartArr.find(shopping_cart_item => (shopping_cart_item.game_id === selectedGame.id) && (shopping_cart_item.user_id === sessionUser.id) )
+        var isOnWishlist = wishArr.find(wishlist_item => (wishlist_item.game_id === selectedGame.id) && (wishlist_item.user_id === sessionUser.id) )
     }
 
     const deleteHandler = () => {
@@ -86,27 +96,27 @@ console.log('this is the game:', reviewsArr)
 
             <div className='detailedSpot-text-title'>{selectedGame.name}</div>
             <div className='detailedSpot-text'>{selectedGame.store}</div>
-            <div className='detailedSpot-text'>${selectedGame.price}</div>
+            <div className='detailedSpot-text'>${displayPrice}</div>
 
             <div className='detailedSpot-text'>Last Updated: {selectedGame.updated_at}</div>
 
             <div className='detailedSpot-buttonBlock'>
 
-            {!findTheReview && <div className='detailedGame-button'>
-            <OpenModalButton
+            {!findTheReview && <div>
+            <OpenModalButtonSmall
                 buttonText="Leave a Review"
                 modalComponent={<CreateReviewModal game={selectedGame} />}
                 />
             </div>}
-            {isOwner && <div className='detailedGame-button'>
-            <OpenModalButton
+            {isOwner && <div>
+            <OpenModalButtonSmall
                 buttonText="Edit Game Post"
                 modalComponent={<EditGameModal game={selectedGame} />}
                 />
             </div>}
                 {isOwner && <button onClick={deleteHandler} className='detailedGame-button'>Delete Game Post</button>}
-                <button onClick={addToCart} className='detailedGame-button'>Add To Cart</button>
-                <button onClick={addToWishlist} className='detailedGame-button'>Add To Wishlist</button>
+                {!isInCart && <button onClick={addToCart} className='detailedGame-button'>Add To Cart</button>}
+                {!isOnWishlist && <button onClick={addToWishlist} className='detailedGame-button'>Add To Wishlist</button>}
             </div>
 
                 <div className="profile-dropdown">
