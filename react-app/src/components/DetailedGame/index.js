@@ -19,6 +19,7 @@ const DetailedGame = () => {
     const [showButton, setShowButton] = useState(true);
     let history = useHistory()
 
+
     const dispatch = useDispatch()
     const { gameId } = useParams()
     const sessionUser = useSelector(state => state.session.user)
@@ -30,7 +31,8 @@ const DetailedGame = () => {
     const cartArr = Object.values(cartObj);
     const wishObj = useSelector(state => state.wishItems)
     const wishArr = Object.values(wishObj);
-    const displayPrice = (selectedGame.price).toFixed(2)
+    // const displayPrice = (selectedGame?.price).toFixed(2)
+    let displayPrice
 
 console.log('this is normal dispatch:', gameId)
 console.log('this is wishlist:',wishObj)
@@ -43,8 +45,6 @@ console.log('this is wishlist:',wishObj)
             .then(() => setIsLoaded(true))
 
     }, [dispatch])
-
-
     // const findTheReview = reviewsArr.find(review => review.userId === sessionUser.id)
 
     const openMenu = () => {
@@ -71,6 +71,7 @@ console.log('this is wishlist:',wishObj)
         var findTheReview = reviewsArr.find(review => (review.game_id === selectedGame.id) && (review.user_id === sessionUser.id) )
         var isInCart = cartArr.find(shopping_cart_item => (shopping_cart_item.game_id === selectedGame.id) && (shopping_cart_item.user_id === sessionUser.id) )
         var isOnWishlist = wishArr.find(wishlist_item => (wishlist_item.game_id === selectedGame.id) && (wishlist_item.user_id === sessionUser.id) )
+        // var displayPrice = (selectedGame.price).toFixed(2)
     }
 
     const deleteHandler = () => {

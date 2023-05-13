@@ -84,6 +84,7 @@ export const editGameById = (gameId, payload) => async (dispatch) => {
     if (response.ok) {
         const game = await response.json();
         dispatch(editGame(game))
+        dispatch(getGameById(gameId))
         return
     }
     return response
@@ -123,6 +124,7 @@ const gamesReducer = (state = initialState, action) => {
             return newState
 
         case LOAD_GAME_BY_ID:
+            newState = {}
             newState[action.game.id] = action.game
             return newState;
 
