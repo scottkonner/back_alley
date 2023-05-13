@@ -16,8 +16,21 @@ function OpenModalButtonSmall({
     if (onButtonClick) onButtonClick();
   };
 
+  const styles = {
+    borderRadius: '3px',
+    margin: '0 4px',
+    fontSize: '11px',
+    backgroundColor: 'rgb(98, 136, 165)',
+    color: 'white',
+    fontFamily: 'arial, helvetica, sans-serif',
+    fontWeight: 'bold',
+    padding: '4px 9px',
+    cursor: 'pointer',
+  };
+
+
   return (
-    <button onClick={onClick} className='ModalButtonSmall-button'>{buttonText}</button>
+    <button onClick={onClick} style={styles} className='ModalButtonSmall-button'>{buttonText}</button>
   );
 }
 

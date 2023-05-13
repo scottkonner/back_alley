@@ -37,17 +37,25 @@ function EditGameModal({game}) {
     console.log('should have something', gamePayload)
     console.log(game.id)
     const data = await dispatch(editGameById(game.id, gamePayload));
-    // if (data) {
-    //   const {error} = await data.json()
-    //   setErrors(error);
-    // } else {
-        closeModal()
-        history.push(`/games/${game.id}`)
-    // }
+    closeModal()
+    history.push(`/games/${game.id}`)
+
+  };
+
+  const styles = {
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   };
 
   return (
-    <div className="edit-server-modal">
+    <div style={styles} className="edit-server-modal">
       <div className="edit-server-modal-content">
 
         <h2>Whats the deal?</h2>

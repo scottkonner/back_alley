@@ -16,8 +16,21 @@ function OpenModalButtonLarge({
     if (onButtonClick) onButtonClick();
   };
 
+  const styles = {
+    borderRadius: '10px',
+    margin: '25px 130px 0px 0px',
+    fontSize: '22px',
+    backgroundColor: 'rgb(98, 136, 165)',
+    color: 'white',
+    fontFamily: 'arial, helvetica, sans-serif',
+    fontWeight: 'bold',
+    borderWidth: '4px',
+    cursor: 'pointer',
+    height:'46px'
+  };
+
   return (
-    <button onClick={onClick} className='ModalButtonLarge-button'>{buttonText}</button>
+    <button onClick={onClick} style={styles} className='ModalButtonLarge-button'>{buttonText}</button>
   );
 }
 
