@@ -84,7 +84,7 @@ console.log('this is wishlist:',wishObj)
     }
 
     const addToWishlist = () => {
-        dispatch(createAWishItem(selectedGame.id, ))
+        dispatch(createAWishItem(selectedGame.id))
         history.push('/wishlist')
     }
 
