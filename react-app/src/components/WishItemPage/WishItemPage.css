@@ -7,12 +7,13 @@
 
 .WishItemPage-title{
     color:white;
-    font-size: 22px;
-    margin: 10px 130px 0px 0px;
-    text-decoration: underline;
+    font-size: 32px;
+    margin: 10px 180px 40px 0px;
+    /* text-decoration: underline; */
 }
 
 .WishItemPage-gameList{
     display:flex;
+    flex-direction: column;
     margin: 5px;
 }

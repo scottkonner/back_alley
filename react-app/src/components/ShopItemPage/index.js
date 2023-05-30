@@ -11,6 +11,13 @@ const ShopItemPage = () => {
 
     const itemsObj = useSelector(state => state.cartItems)
     const itemsArr = Object.values(itemsObj);
+    const Total = () => {
+        let finalPrice =0
+        for (let i =0; i < itemsArr.length; i++){
+            finalPrice += (itemsArr[i].Game.price) * (itemsArr[i].quantity)
+        }
+        return finalPrice.toFixed(2)
+    }
 
     useEffect(() => {
         dispatch(getUserCartItems()).then(() => setIsLoaded(true))
@@ -28,6 +35,9 @@ const ShopItemPage = () => {
                 <ShopItemCard  shopItem ={shopItem}/>
                 )}
             </div>
+        </div>
+        <div className='ShopItemPage-Total'>
+        <div className='ShopItemPage-Total-price'>Subtotal : ${Total()}</div>
         </div>
     </div>
     )

@@ -4,6 +4,9 @@
   justify-content: flex-end;
   flex-direction: reverse;
   background-color: #42454f;
+  margin:0px;
+  padding:0px;
+  width:100vw;
 }
 
 .ProfileCard {
@@ -33,6 +36,7 @@
 }
 
 .Link-Text-profile-items{
+  font-family: "Helvetica";
   color:white;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -50,6 +54,7 @@
 }
 
 .Link-Text-Navbar-Home{
+  font-family: "Helvetica";
   font-size: 72px;
   color:rgb(156, 87, 156);
   text-decoration: none;
