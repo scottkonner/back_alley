@@ -30,6 +30,14 @@ const ShopItemPage = () => {
         alignItems: 'center'
       };
 
+    const ShopTotal_styles = {
+        position: 'absolute',
+        left:'74vw',
+        color:'white',
+        fontSize: '22px',
+        margin: '10px 130px 0px 0px'
+      };
+
 
     return (
     <div className='ShopItemPage' style={ShopPage_styles}>
@@ -44,7 +52,7 @@ const ShopItemPage = () => {
             </div>
         </div>
         <div className='ShopItemPage-Total'>
-        <div className='ShopItemPage-Total-price'>Subtotal : ${Total()}</div>
+        <div className='ShopItemPage-Total-price' style={ShopTotal_styles}>Subtotal : ${Total()}</div>
         </div>
     </div>
     )
