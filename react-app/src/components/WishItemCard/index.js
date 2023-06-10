@@ -23,6 +23,26 @@ const WishItemCard = ({ wishItem }) => {
         height:'160px'
       };
 
+    const Block2_styles = {
+      display:'flex',
+      flexDirection:'column',
+      justifyContent: 'center',
+      alignItems:'center',
+      width: '270px',
+      height: '160px'
+      };
+
+    const Block3_styles = {
+      display:'flex',
+      flexDirection:'column',
+      justifyContent: 'center',
+      alignItems:'flex-end',
+      width: '100vw',
+      height:'160px',
+      margin:'0px 0px 0px 0px'
+
+      };
+
     return (
         <div className="wishItemCard">
             <div className="wishItemCard-Block1" style={Block1_styles}>
