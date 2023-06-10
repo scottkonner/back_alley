@@ -23,9 +23,16 @@ const ShopItemPage = () => {
         dispatch(getUserCartItems()).then(() => setIsLoaded(true))
     }, [dispatch])
 
+    const ShopPage_styles = {
+        display:'flex',
+        flexDirection: 'column',
+        justifyContent:'center',
+        alignItems: 'center'
+      };
+
 
     return (
-    <div className='ShopItemPage'>
+    <div className='ShopItemPage' style={ShopPage_styles}>
         <div className='ShopItemPage-header'>
             <div className='ShopItemPage-title'>My Cart</div>
         </div>
