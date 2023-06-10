@@ -16,9 +16,15 @@ const WishItemPage = () => {
         dispatch(getUserWishItems()).then(() => setIsLoaded(true))
     }, [dispatch])
 
+    const WishPage_styles = {
+        display:'flex',
+        flexDirection: 'column',
+        justifyContent:'center',
+        alignItems: 'center'
+      };
 
     return (
-    <div className='WishItemPage'>
+    <div className='WishItemPage' style={WishPage_styles}>
         <div className='WishItemPage-header'>
             <div className='WishItemPage-title'>My Wishlist</div>
         </div>
