@@ -15,6 +15,18 @@ const WishItemCard = ({ wishItem }) => {
         dispatch(deleteWishItemById(wishItem.id))
     }
 
+    const WishCard_styles = {
+        display:'flex',
+        flexDirection:'row',
+        alignItems:'center',
+        width: '80vw',
+        height:'160px',
+        border: '3px black solid',
+        overflow:'hidden',
+        boxShadow: '0px 0px 15px 1px',
+        backgroundColor: '#d6bef1'
+      };
+
     const Block1_styles = {
         display:'flex',
         flexDirection:'row',
@@ -44,15 +56,15 @@ const WishItemCard = ({ wishItem }) => {
       };
 
     return (
-        <div className="wishItemCard">
+        <div className="wishItemCard" style={WishCard_styles}>
             <div className="wishItemCard-Block1" style={Block1_styles}>
                 <div className='wishItemCard-Pic'>
                     <img  src={wishItem.Game.icon} alt='not loading'></img>
                 </div>
                 <div className='wishItemCard-Name'>{wishItem.Game.name}</div>
             </div>
-            <div className="wishItemCard-Block2"></div>
-            <div className="wishItemCard-Block3">
+            <div className="wishItemCard-Block2" style={Block2_styles}></div>
+            <div className="wishItemCard-Block3" style={Block3_styles}>
                 <div className='wishItemCard-buttonBlock'>
                     {isOwner && <button className='wishItemCard-button' onClick={deleteHandler}>Delete</button>}
                 </div>
